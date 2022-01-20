@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Quiz</title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/sunny.png">
+    <link rel="stylesheet" href="./Assets/css/style.css" />
+</head>
+
+<body>
+    <header>
+        <h4>High Scores: <span class="current-score">0</span></h4>
+        <h3>Timer: <span id="timer">0</span></h3>
+    </header>
+
+    <main>
+        <section id="start-screen" class="hide">
+            <h2>Coding Quiz Challenges</h2>
+            <p>Try to answer the following code related questions within the time limit. Keep in mind that incorrect
+                answers will penalize your score/time by ten seconds!</p>
+            <button id="start">Start</button>
+        </section>
+
+        <section id="q-a-screen" class="hide">
+            <h2 id="question">Q&A</h2>
+            <ol>
+                <li id="li1">1st answer</li>
+                <li id="li2">2nd answer</li>
+                <li id="li3">3rd answer</li>
+                <li id="li4">4th answer</li>
+            </ol>
+            <p class="hide">________________________________________________</p>
+            <p id="result" class="hide">Right</p>
+        </section>
+
+        <section id="end-screen" class="hide">
+            <h2>All Done!</h2>
+            <p>Your Final Scores: <span class="current-score">0</span></p>
+            <div>
+                <label for="initial">Enter Initial: </label>
+                <input id="student-name" type="text" name="initial">
+                <button id="submit">Submit</button>
+            </div>
+        </section>
+
+        <section id="result-screen" class="hide">
+            <h2>High Scores:</h2>
+            <ol id="result-list">
+
+            </ol>
+            <div>
+                <button id="start-again">Go Back</button>
+                <button id="clear-score">Clear Scores</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
