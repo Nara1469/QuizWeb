@@ -17,7 +17,7 @@ main {
 }
 
 h2 {
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 }
 
 h3 {
@@ -32,6 +32,7 @@ h4 {
 }
 
 button {
+    margin-top: 5%;
     background-color: navy;
     border-radius: 5px;
     color: white;
@@ -40,6 +41,11 @@ button {
     display: inline-block;
     text-align: center;
     padding: 10px 20px;
+}
+
+li:hover {
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 #start-screen {
