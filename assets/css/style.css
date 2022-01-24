@@ -9,6 +9,12 @@ body {
     font-size: 100%;
 }
 
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 main {
     display: flex;
     flex-wrap: wrap;
@@ -22,9 +28,10 @@ h2 {
 
 h3 {
     text-align: right;
-    position: absolute;
+
+    /* position: absolute;
     top: 0px;
-    right: 10px;
+    right: 10px; */
 }
 
 h4 {
@@ -48,22 +55,12 @@ li:hover {
     font-weight: bold;
 }
 
-#start-screen {
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     width: 500px;
     height: auto;
-    text-align: center;
-}
-
-#q-a-screen {
-    width: 500px;
-    height: auto;
-    text-align: left;
-}
-
-#end-screen {
-    width: 500px;
-    height: auto;
-    text-align: left;
 }
 
 .hide {
@@ -76,4 +73,14 @@ li:hover {
 
 .place-center {
     text-align: center;
+}
+
+.place-right {
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 800px) {
+    .card {
+        width: auto;
+    }
 }

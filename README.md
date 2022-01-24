@@ -4,7 +4,7 @@ Bootcamp week 4: Homework
 
 # 04 Web APIs: Code Quiz
 
-## Your Task
+## About Task
 
 At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
 
@@ -34,6 +34,14 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
+```
+
+## Solution
+
+```
+AS A coding boot camp student
+I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
+SO THAT I can gauge my progress compared to my peers
 ```
 
 ## Mock-Up

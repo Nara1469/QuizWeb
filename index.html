@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Quiz</title>
     <link rel="icon" type="image/x-icon" href="./assets/images/sunny.png">
-    <link rel="stylesheet" href="./Assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
 <body>
@@ -17,26 +17,31 @@
     </header>
 
     <main>
-        <section id="start-screen" class="hide">
+        <section id="start-screen" class="card place-center hide">
             <h2>Coding Quiz Challenges</h2>
             <p>Try to answer the following code related questions within the time limit. Keep in mind that incorrect
                 answers will penalize your score/time by ten seconds!</p>
-            <button id="start">Start</button>
+            <div>
+                <button id="start">Start</button>
+            </div>
         </section>
 
-        <section id="q-a-screen" class="hide">
+        <section id="q-a-screen" class="card place-left hide">
             <h2 id="question">Q&A</h2>
-            <ol>
-                <li id="li1">1st answer</li>
-                <li id="li2">2nd answer</li>
-                <li id="li3">3rd answer</li>
-                <li id="li4">4th answer</li>
+            <ol id="answer-list">
+                <li>1st answer</li>
+                <li>2nd answer</li>
+                <li>3rd answer</li>
+                <li>4th answer</li>
             </ol>
             <p>________________________________________________</p>
-            <p id="result" class="hide">Right</p>
+            <p id="result">1(7): </p>
+            <div>
+                <button id="next" class="place-right">Next</button>
+            </div>
         </section>
 
-        <section id="end-screen" class="hide">
+        <section id="end-screen" class="card place-left hide">
             <h2>All Done!</h2>
             <p>Your Final Scores: <span id="current-score">0</span></p>
             <div>
@@ -46,7 +51,7 @@
             </div>
         </section>
 
-        <section id="result-screen" class="hide">
+        <section id="result-screen" class="card place-left hide">
             <h2>High Scores:</h2>
             <ol id="result-list">
 
