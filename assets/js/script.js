@@ -71,10 +71,9 @@ const testScreen = document.querySelector("#q-a-screen");
 const questionId = document.getElementById("question");
 const answerList = document.getElementById("answer-list");
 const showResult = document.querySelector("#result");
-const nextButton = document.getElementById("next");
 
 const endScreen = document.querySelector("#end-screen");
-const currentScore = document.querySelector("#current-score");
+const currentScore = document.getElementById("current-score");
 const studentName = document.getElementById("student-name");
 const submitButton = document.getElementById("submit");
 
@@ -83,18 +82,14 @@ const studentList = document.querySelector("#result-list");
 const againButton = document.getElementById("start-again");
 const clearButton = document.getElementById("clear-score");
 
-let students = [
-  {
-    initial: "",
-    score: 0
-  }
-];
+let students = [];
+let sortedArray = [];
 
 let index = 0;
 let timerCount = 100;
 let realTimeScore = 0;
 
-// functions for Screen changes
+// ---------- functions for Screen -------------
 
 function callStartScreen() {
   startScreen.classList.remove("hide");
@@ -105,18 +100,16 @@ function callStartScreen() {
 function callTestScreen() {
   testScreen.classList.remove("hide");
   startScreen.classList.add("hide");
-  timerCount = 100;
+  timerCount = 75;
   realTimeScore = 0;
   index = 0;
   startTimer();
   callNextQuestion();
-  // wait for nextButton event listener
 }
 
 function callEndScreen() {
   endScreen.classList.remove("hide");
   testScreen.classList.add("hide");
-  studentName.textContent = "";
   currentScore.textContent = realTimeScore;
   // wait for submitButton event listener
 }
@@ -128,6 +121,8 @@ function callResultScreen() {
   againButton.addEventListener("click", callStartScreen);
   clearButton.addEventListener("click", clearStorage);
 }
+
+// ------------------- function ------------------------
 
 // Testing Timer
 function startTimer() {
@@ -143,40 +138,39 @@ function startTimer() {
   }, 1000);
 }
 
-function init() {
-  startScreen.classList.remove("hide");
-
-}
-
+// printing test taker's scores to result screen
 function renderList() {
-  let tempName = JSON.parse(localStorage.getItem("names"));
-  let tempScore = JSON.parse(localStorage.getItem("scores"));
-  const newLi = document.createElement("li");
-  newLi.textContent = tempName + ": " + tempScore;
-  studentList.appendChild(newLi);
-  // for (let index = 0; index < students.length; index++) {
-  //   const student = students[index];
-  //   const newLi = document.createElement("li");
-  //   newLi.textContent = tempName + ": " + tempScore;
-  //   studentList.appendChild(newLi);
-  // }
-}
-
-function clearStorage(event) {
-  event.preventDefault();
-  localStorage.clear();
-}
-
-function randomizeList() {
-
-  let randoList = [];
-  for (let i = 0; i < questionArray.length; i++) {
-    randoList[i] = Math.floor(Math.random() * questions.length);
+  studentList.textContent = "";
+  sortMaxToMin();
+  for (let i = 0; i < sortedArray.length; i++) {
+    const tempName = sortedArray[i].initial;
+    const tempScore = sortedArray[i].score;
+    const newLi = document.createElement("li");
+    newLi.textContent = tempName + ": " + tempScore;
+    studentList.appendChild(newLi);
   }
 }
 
+// sorting test scores from maximum to down
+function sortMaxToMin() {
+  const tempArray = [...students];
+  sortedArray = [];
+  while (tempArray.length > 0) {
+    let maxIndex = 0;
+    for (let j = 0; j < tempArray.length; j++) {
+      const element = tempArray[j];
+      if (element.score > tempArray[maxIndex].score) {
+        maxIndex = j;
+      }
+    }
+    sortedArray.push(tempArray[maxIndex]);
+    tempArray.splice(maxIndex, 1);
+  }
+}
+
+// printing questions on screen
 function callNextQuestion() {
-  showResult.textContent = " ";
+  showResult.textContent = "";
   if (index < questionArray.length && timerCount > 0) {
     questionId.textContent = questionArray[index].question;
     for (let j = 0; j < 4; j++) {
@@ -184,6 +178,19 @@ function callNextQuestion() {
     }
   }
 }
+
+function clearStorage() {
+  localStorage.clear();
+  studentList.textContent = "";
+  // let students = [];
+}
+
+function init() {
+  startScreen.classList.remove("hide");
+  localStorage.clear();
+}
+
+// -------------- addEventListener ------------------
 
 // during the test
 answerList.addEventListener("click", function (event) {
@@ -197,6 +204,8 @@ answerList.addEventListener("click", function (event) {
         showResult.textContent = "Wrong";
         timerCount = timerCount - 10;  // wrong answer cuts timer by 10 seconds
       }
+      index++;
+      callNextQuestion();
     }
   }
   if (timerCount <= 0) {
@@ -205,7 +214,7 @@ answerList.addEventListener("click", function (event) {
     timer.textContent = timerCount;
     callEndScreen();
   } else {
-    if (index === questionArray.length - 1) {
+    if (index === questionArray.length) {
       realTimeScore = timerCount;
       timerCount = 0;
       timer.textContent = timerCount;
@@ -217,38 +226,18 @@ answerList.addEventListener("click", function (event) {
 // in the startScreen
 startButton.addEventListener("click", callTestScreen);
 
-// in the testScreen
-nextButton.addEventListener("click", function () {
-  if (timerCount > 0) {
-    if (index < questionArray.length) {
-      index++;
-      callNextQuestion();
-    } else {
-      realTimeScore = timerCount;
-      timerCount = 0;
-      timer.textContent = timerCount;
-      callEndScreen();
-    }
-  } else {
-    realTimeScore = 0;
-    timerCount = 0;
-    timer.textContent = timerCount;
-    callEndScreen();
-  }
-});
-
 // in the endScreen 
 submitButton.addEventListener("click", function () {
-  const tempName = studentName.value.trim(); // tempName.toUppercase !!!
+  const inName = studentName.value.trim();
+  const tempName = inName.toUpperCase();
   if (tempName) {
-    students.push({tempName, realTimeScore});
-    console.log(students);
-    localStorage.setItem("names", JSON.stringify(tempName));
-    localStorage.setItem("scores", JSON.stringify(realTimeScore));
+    students.push({ initial: tempName, score: realTimeScore });
+    localStorage.setItem("students", JSON.stringify(students));
     callResultScreen();
   } else {
     alert("Name required. Try again.");
   }
+  studentName.textContent = "";
 });
 
 init();
