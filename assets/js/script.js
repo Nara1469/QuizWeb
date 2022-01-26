@@ -138,6 +138,17 @@ function startTimer() {
   }, 1000);
 }
 
+// printing questions on screen
+function callNextQuestion() {
+  showResult.textContent = "";
+  if (index < questionArray.length && timerCount > 0) {
+    questionId.textContent = questionArray[index].question;
+    for (let j = 0; j < 4; j++) {
+      answerList.children[j].textContent = questionArray[index].answers[j];
+    }
+  }
+}
+
 // printing test taker's scores to result screen
 function renderList() {
   studentList.textContent = "";
@@ -168,21 +179,11 @@ function sortMaxToMin() {
   }
 }
 
-// printing questions on screen
-function callNextQuestion() {
-  showResult.textContent = "";
-  if (index < questionArray.length && timerCount > 0) {
-    questionId.textContent = questionArray[index].question;
-    for (let j = 0; j < 4; j++) {
-      answerList.children[j].textContent = questionArray[index].answers[j];
-    }
-  }
-}
-
+// clears local storage and object array
 function clearStorage() {
   localStorage.clear();
   studentList.textContent = "";
-  // let students = [];
+  students = [];
 }
 
 function init() {
