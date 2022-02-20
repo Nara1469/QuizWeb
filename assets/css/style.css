@@ -10,9 +10,8 @@ body {
 }
 
 header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    width: 100vw;
+    height: auto;
 }
 
 main {
@@ -27,6 +26,9 @@ h2 {
 }
 
 h3 {
+    position: absolute;
+    top: 0px;
+    right: 100px;
     text-align: right;
 }
 
@@ -46,17 +48,24 @@ button {
     padding: 10px 20px;
 }
 
+li {
+    margin: 10px;
+    padding: 0 20px;
+}
+
 li:hover {
     text-decoration: underline;
     font-weight: bold;
 }
 
 .card {
-    display: flex;
+    display: flex; 
     flex-wrap: wrap;
     flex-direction: column;
+    justify-content: center;
     width: 500px;
     height: auto;
+    padding: 5px;
 }
 
 .hide {
@@ -71,8 +80,21 @@ li:hover {
     text-align: center;
 }
 
-@media screen and (max-width: 800px) {
+.list {
+    display: block;
+    width: 250px;
+    height: auto;
+    margin: 0 30px;
+    text-align: left;
+}
+
+@media screen and (max-width: 900px) {
     .card {
-        width: auto;
+        width: 100%;
+        height: auto;
+    }
+
+    h3 {
+        right: 30px;
     }
 }

@@ -196,6 +196,7 @@ function init() {
 // during the test
 answerList.addEventListener("click", function (event) {
   const element = event.target;
+  // let timeOutId;
   const answer = questionArray[index].correct;
   if (index < questionArray.length && timerCount > 0) {
     if (element.matches("li") === true) {
@@ -205,8 +206,11 @@ answerList.addEventListener("click", function (event) {
         showResult.textContent = "Wrong";
         timerCount = timerCount - 10;  // wrong answer cuts timer by 10 seconds
       }
-      index++;
-      callNextQuestion();
+      // timeOutId = setTimeout(function() {
+        index++;
+        callNextQuestion();
+      // }, 100);
+      // clearTimeout(timeOutId);
     }
   }
   if (timerCount <= 0) {

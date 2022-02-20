@@ -28,17 +28,19 @@
 
         <section id="q-a-screen" class="card place-left hide">
             <h2 id="question">Q&A</h2>
-            <ol id="answer-list">
-                <li>1st answer</li>
-                <li>2nd answer</li>
-                <li>3rd answer</li>
-                <li>4th answer</li>
-            </ol>
-            <p>________________________________________________</p>
+            <div class="list">
+                <ol id="answer-list">
+                    <li>1st answer</li>
+                    <li>2nd answer</li>
+                    <li>3rd answer</li>
+                    <li>4th answer</li>
+                </ol>
+            </div>
+            <p>___________________________________</p>
             <p id="result">Answer</p>
         </section>
 
-        <section id="end-screen" class="card place-left hide">
+        <section id="end-screen" class="card place-center hide">
             <h2>All Done!</h2>
             <p>Your Final Scores: <span id="current-score">0</span></p>
             <div>
@@ -48,11 +50,13 @@
             </div>
         </section>
 
-        <section id="result-screen" class="card place-left hide">
+        <section id="result-screen" class="card place-center hide">
             <h2>High Scores:</h2>
-            <ol id="result-list">
-
-            </ol>
+            <div class="list">
+                <ol id="result-list">
+                <!-- test results -->
+                </ol>
+            </div>
             <div>
                 <button id="start-again">Go Back</button>
                 <button id="clear-score">Clear Scores</button>
